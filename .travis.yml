@@ -7,6 +7,5 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - yarn test:coverage
-  - yarn build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
