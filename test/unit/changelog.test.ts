@@ -1,4 +1,5 @@
 import Changelog from "../../src/changelog";
+import ChangelogFormatter from "../../src/changelogFormatter";
 
 describe("Changelog", () => {
   describe("#content", () => {
@@ -6,7 +7,7 @@ describe("Changelog", () => {
       const commits = [
         { getDetails: () => "feat: option to hide device serial 4e179e4" }
       ];
-      const changelog = new Changelog(commits);
+      const changelog = new Changelog(commits, ChangelogFormatter);
       const expected = "- feat: option to hide device serial 4e179e4\n";
       const actual = changelog.content();
 
@@ -18,7 +19,7 @@ describe("Changelog", () => {
         { getDetails: () => "fix: retrieve device name correctly c4a49e1" }
       ];
 
-      const changelog = new Changelog(commits);
+      const changelog = new Changelog(commits, ChangelogFormatter);
       const expected = "- fix: retrieve device name correctly c4a49e1\n";
       const content = changelog.content();
 
@@ -30,7 +31,7 @@ describe("Changelog", () => {
         { getDetails: () => "feat: option to hide device serial 4e179e4" }
       ];
 
-      const changelog = new Changelog(commits);
+      const changelog = new Changelog(commits, ChangelogFormatter);
       const expected =
         "## Added\n\n- feat: option to hide device serial 4e179e4\n";
       const content = changelog.content();
@@ -43,7 +44,7 @@ describe("Changelog", () => {
         { getDetails: () => "fix: retrieve device name correctly c4a49e1" }
       ];
 
-      const changelog = new Changelog(commits);
+      const changelog = new Changelog(commits, ChangelogFormatter);
       const expected =
         "## Fixed\n\n- fix: retrieve device name correctly c4a49e1\n";
       const content = changelog.content();

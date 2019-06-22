@@ -1,10 +1,11 @@
 import CommitLog from "../src/commitLog";
 import FileSystem from "../src/fileSystem";
 import Changelog from "../src/changelog";
+import ChangelogFormatter from "../src/changelogFormatter";
 
 import ActualCommitFormatter from "./lib/actualCommitFormatter";
 import StubExecSyncGitLog from "./lib/stubExecSyncGitLog";
-import { conditionalExpression } from "@babel/types";
+
 const testData = require("./lib/data");
 
 const fs = require("fs");
@@ -58,7 +59,7 @@ describe("Feature Tests", () => {
     const commitLog = new CommitLog();
     const commits = commitLog.getCommits();
 
-    const changelog = new Changelog(commits);
+    const changelog = new Changelog(commits, ChangelogFormatter);
 
     let content = changelog.content();
 
