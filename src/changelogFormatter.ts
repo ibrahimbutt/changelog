@@ -1,5 +1,7 @@
+import Commit from "./commit";
+
 export default class ChangelogFormatter {
-  static format(commits) {
+  static format(commits: Array<Commit>): string {
     const featureCommits = this.getFeatureCommits(commits);
     const fixCommits = this.getFixCommits(commits);
 
@@ -9,36 +11,36 @@ export default class ChangelogFormatter {
     return addedSection + "\n" + fixedSection;
   }
 
-  private static getFeatureCommits(commits) {
+  private static getFeatureCommits(commits): Array<Commit> {
     return commits.filter(commit => commit.getDetails().includes("feat"));
   }
 
-  private static formatAddedSection(commits) {
+  private static formatAddedSection(commits): string {
     const header = "## Added\n\n";
     return this.formatSection(header, commits);
   }
 
-  private static getFixCommits(commits) {
+  private static getFixCommits(commits): Array<Commit> {
     return commits.filter(commit => commit.getDetails().includes("fix"));
   }
 
-  private static formatFixedSection(commits) {
+  private static formatFixedSection(commits): string {
     const header = "## Fixed\n\n";
     return this.formatSection(header, commits);
   }
 
-  private static formatSection(header, commits) {
+  private static formatSection(header, commits): string {
     return header + this.formatCommits(commits);
   }
 
-  private static formatCommits(commits) {
+  private static formatCommits(commits): string {
     let content = "";
     commits.forEach(commit => {
       content += this.formatCommit(commit);
     });
     return content;
   }
-  private static formatCommit(commit) {
+  private static formatCommit(commit): string {
     return `- ${commit.getDetails()}\n`;
   }
 }
