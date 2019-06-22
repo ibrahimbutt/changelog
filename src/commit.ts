@@ -5,7 +5,7 @@ export default class Commit {
     this.details = details;
   }
 
-  public getDetails() {
+  public getDetails(): String {
     return this.details;
   }
 }
