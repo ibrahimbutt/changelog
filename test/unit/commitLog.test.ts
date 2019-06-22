@@ -1,36 +1,41 @@
-import { CommitLog } from "../../src/commitLog";
-const child_process = require("child_process");
+import CommitLog from "../../src/commitLog";
+
+import ActualCommitFormatter from "../lib/actualCommitFormatter";
+import StubExecSyncGitLog from "../lib/stubExecSyncGitLog";
+const testData = require("../lib/data");
 
 describe("CommitLog", () => {
   test("returns expected commits", () => {
-    const expected = [
-      "feat: option to hide device serial 4e179e4",
-      "fix: retrieve device name correctly c4a49e1"
-    ];
+    const expected = {
+      first: testData.commits.first,
+      second: testData.commits.second
+    };
 
-    const expectedString = expected.toString().replace(",", "\n");
-    const buffer = Buffer.from(expectedString);
-    child_process.execSync = jest.fn(() => buffer);
+    StubExecSyncGitLog.stubCommits(expected);
 
     const commitLog = new CommitLog();
 
-    const actual = commitLog.getCommits();
-    expect(actual).toEqual(expected);
+    const actualCommits = commitLog.getCommits();
+    const actual = ActualCommitFormatter.format(actualCommits);
+
+    expect(actual.first).toEqual(expected.first);
+    expect(actual.second).toEqual(expected.second);
   });
 
   test("returns expected commits", () => {
-    const expected = [
-      "feat: device serial getter 90010eb",
-      "feat: device name getter and setter 90010eb"
-    ];
+    const expected = {
+      first: testData.commits.third,
+      second: testData.commits.fourth
+    };
 
-    const expectedString = expected.toString().replace(",", "\n");
-    const buffer = Buffer.from(expectedString);
-    child_process.execSync = jest.fn(() => buffer);
+    StubExecSyncGitLog.stubCommits(expected);
 
     const commitLog = new CommitLog();
 
-    const actual = commitLog.getCommits();
-    expect(actual).toEqual(expected);
+    const actualCommits = commitLog.getCommits();
+    const actual = ActualCommitFormatter.format(actualCommits);
+
+    expect(actual.first).toEqual(expected.first);
+    expect(actual.second).toEqual(expected.second);
   });
 });
