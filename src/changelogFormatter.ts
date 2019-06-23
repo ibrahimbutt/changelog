@@ -12,7 +12,7 @@ export default class ChangelogFormatter {
   }
 
   private static getFeatureCommits(commits): Array<Commit> {
-    return commits.filter(commit => commit.getDetails().includes("feat"));
+    return commits.filter(commit => commit.getDetails().match(/^feat/));
   }
 
   private static formatAddedSection(commits): string {
@@ -21,7 +21,7 @@ export default class ChangelogFormatter {
   }
 
   private static getFixCommits(commits): Array<Commit> {
-    return commits.filter(commit => commit.getDetails().includes("fix"));
+    return commits.filter(commit => commit.getDetails().match(/^fix/));
   }
 
   private static formatFixedSection(commits): string {

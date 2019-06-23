@@ -64,5 +64,23 @@ describe("ChangeLog Formatter", () => {
 
       expect(actual).toEqual(expected);
     });
+
+    describe("When commits subjects have substrings that match commit types", () => {
+      test("categorise 'feat: changelogs have added and fixed sections d5ad74a' as Added", () => {
+        const commits = [
+          {
+            getDetails: () =>
+              "feat: changelogs have added and fixed sections d5ad74a"
+          }
+        ];
+        const actual = ChangelogFormatter.format(commits);
+
+        const expected =
+          "## Added\n\n" +
+          "- feat: changelogs have added and fixed sections d5ad74a\n";
+
+        expect(actual).toContain(expected);
+      });
+    });
   });
 });
