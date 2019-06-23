@@ -1,0 +1,8 @@
+{
+  "commits": {
+    "first": "feat: option to hide device serial 4e179e4",
+    "second": "fix: retrieve device name correctly c4a49e1",
+    "third": "feat: device serial getter 90010eb",
+    "fourth": "feat: device name getter and setter 90010eb"
+  }
+}
