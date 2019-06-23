@@ -1,9 +1,11 @@
 import CommitLog from "../src/commitLog";
 import FileSystem from "../src/fileSystem";
+import Changelog from "../src/changelog";
+import ChangelogFormatter from "../src/changelogFormatter";
 
 import ActualCommitFormatter from "./lib/actualCommitFormatter";
 import StubExecSyncGitLog from "./lib/stubExecSyncGitLog";
-import { conditionalExpression } from "@babel/types";
+
 const testData = require("./lib/data");
 
 const fs = require("fs");
@@ -44,5 +46,29 @@ describe("Feature Tests", () => {
     FileSystem.create("CHANGELOG.md", content);
 
     expect(fs.writeFileSync).toHaveBeenCalledWith("CHANGELOG.md", content);
+  });
+
+  test("Changelog has Added and Fixed section", () => {
+    const stubbedCommits = {
+      first: testData.commits.first,
+      second: testData.commits.second
+    };
+
+    StubExecSyncGitLog.stubCommits(stubbedCommits);
+
+    const commitLog = new CommitLog();
+    const commits = commitLog.getCommits();
+
+    const changelog = new Changelog(commits, ChangelogFormatter);
+
+    let content = changelog.content();
+
+    const expected = {
+      first: `## Added\n\n- ${testData.commits.first}\n`,
+      second: `## Fixed\n\n- ${testData.commits.second}\n`
+    };
+
+    expect(content).toContain(expected.first);
+    expect(content).toContain(expected.second);
   });
 });
