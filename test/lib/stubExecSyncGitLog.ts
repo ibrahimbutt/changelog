@@ -17,6 +17,6 @@ export default class StubExecSyncGitLog {
   }
 
   private static formatToMatchGitLog(commits) {
-    return commits.toString().replace(",", "\n");
+    return commits.toString().replace(/,/g, "\n");
   }
 }

@@ -24,12 +24,13 @@ describe("Feature Tests", () => {
     const actualCommits = commitLog.getCommits();
     const actual = ActualCommitFormatter.format(actualCommits);
 
-    expect(actual.first).toEqual(expected.first);
-    expect(actual.second).toEqual(expected.second);
+    expect(actual.first).toContain(expected.first);
+    expect(actual.second).toContain(expected.second);
   });
 
   test("User can save commits to a file", () => {
     const stubbedCommits = {
+      releaseSecond: testData.releases.second,
       first: testData.commits.first,
       second: testData.commits.second
     };
@@ -50,22 +51,49 @@ describe("Feature Tests", () => {
 
   test("Changelog has Added and Fixed section", () => {
     const stubbedCommits = {
+      releaseSecond: testData.releases.second,
       first: testData.commits.first,
+      releaseFirst: testData.releases.first,
       second: testData.commits.second
     };
 
     StubExecSyncGitLog.stubCommits(stubbedCommits);
 
     const commitLog = new CommitLog();
+
     const commits = commitLog.getCommits();
 
     const changelog = new Changelog(commits, ChangelogFormatter);
 
     let content = changelog.content();
+    const expected = {
+      first: `### Added\n\n- ${testData.commits.first}\n`,
+      second: `### Fixed\n\n- ${testData.commits.second}\n`
+    };
+
+    expect(content).toContain(expected.first);
+    expect(content).toContain(expected.second);
+  });
+
+  test("Changelog has version headers", () => {
+    const stubbedCommits = {
+      releaseSecond: testData.releases.second,
+      first: testData.commits.first,
+      releaseFirst: testData.releases.first,
+      second: testData.commits.third
+    };
+
+    StubExecSyncGitLog.stubCommits(stubbedCommits);
+
+    const commitLog = new CommitLog();
+    const commits = commitLog.getCommits();
+    const changelog = new Changelog(commits, ChangelogFormatter);
+
+    let content = changelog.content();
 
     const expected = {
-      first: `## Added\n\n- ${testData.commits.first}\n`,
-      second: `## Fixed\n\n- ${testData.commits.second}\n`
+      first: `## v1.0.0\n\n### Added\n\n- ${testData.commits.first}\n`,
+      second: `## v0.1.0\n\n### Added\n\n- ${testData.commits.third}\n`
     };
 
     expect(content).toContain(expected.first);
