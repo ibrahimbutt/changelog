@@ -19,7 +19,7 @@ export default class CommitLog {
   }
 
   private execSync(): Buffer {
-    return execSync(`git log --pretty=format:"%s %h"`);
+    return execSync(`git log --pretty=format:"%s %h %d"`);
   }
 
   private parseCommits(log: String): Array<Commit> {
