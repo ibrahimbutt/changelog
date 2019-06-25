@@ -1,5 +1,4 @@
 import SectionFormatter from "../../src/sectionFormatter";
-import CommitFormatter from "../../src/commitsFormatter";
 
 describe("SectionFormatter", () => {
   describe("#format", () => {

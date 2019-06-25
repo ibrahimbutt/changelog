@@ -2,7 +2,7 @@ import Commit from "./commit";
 import SectionFormatter from "./sectionFormatter";
 
 export default class ChangelogFormatter {
-  private static SectionFormatter = SectionFormatter;
+  private static VersionFormatter = VersionFormatter;
 
   static format(commits: Array<Commit>): string {
     var content = "";
@@ -10,21 +10,7 @@ export default class ChangelogFormatter {
     const versions = this.filterVersions(commits);
 
     for (let i = 0; i < versions.length; i++) {
-      const featureCommits = this.getFeatureCommits(versions[i]);
-      const fixCommits = this.getFixCommits(versions[i]);
-
-      const addedSection: string = this.SectionFormatter.format(
-        "Added",
-        featureCommits
-      );
-      const fixedSection: string = this.SectionFormatter.format(
-        "Fixed",
-        fixCommits
-      );
-
-      const version = versions[i][0].getDetails().match(/v\d+\.\d+.\d+/);
-      content +=
-        "## " + version + "\n\n" + addedSection + "\n" + fixedSection + "\n";
+      content += this.VersionFormatter.format(versions[i]);
     }
     return content;
   }
@@ -52,11 +38,11 @@ export default class ChangelogFormatter {
     return versions;
   }
 
-  private static getFeatureCommits(commits): Array<Commit> {
+  private static getFeatureCommits(commits: Array<Commit>): Array<Commit> {
     return commits.filter(commit => commit.getDetails().match(/^feat/));
   }
 
-  private static getFixCommits(commits): Array<Commit> {
+  private static getFixCommits(commits: Array<Commit>): Array<Commit> {
     return commits.filter(commit => commit.getDetails().match(/^fix/));
   }
 }
