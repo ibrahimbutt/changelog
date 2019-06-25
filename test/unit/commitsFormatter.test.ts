@@ -36,5 +36,19 @@ describe("CommitFormatter", () => {
       const actual = CommitFormatter.format(commit);
       expect(actual).toEqual(expected);
     });
+
+    test("returns '- device serial getter - retrieve device name correctly'", () => {
+      const commit = [
+        { getDetails: () => "fix: device serial getter" },
+        {
+          getDetails: () => "fix: retrieve device name correctly"
+        }
+      ];
+
+      const expected =
+        "- device serial getter\n- retrieve device name correctly\n";
+      const actual = CommitFormatter.format(commit);
+      expect(actual).toEqual(expected);
+    });
   });
 });

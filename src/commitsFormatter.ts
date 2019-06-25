@@ -5,11 +5,11 @@ export default class CommitsFormatter {
     return this.formatCommits(commits);
   }
 
-  private static formatCommits(commits: Array<Commit>) {
-    return commits.map(commit => this.formatCommit(commit)).join();
+  private static formatCommits(commits: Array<Commit>): string {
+    return commits.map((commit: Commit) => this.formatCommit(commit)).join("");
   }
 
-  private static formatCommit(commit: Commit) {
+  private static formatCommit(commit: Commit): string {
     return `- ${this.removeType(commit.getDetails())}\n`;
   }
 
