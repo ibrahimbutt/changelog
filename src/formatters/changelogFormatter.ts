@@ -1,4 +1,4 @@
-import Commit from "./commit";
+import Commit from "../commit";
 import VersionFormatter from "./versionFormatter";
 
 export default class ChangelogFormatter {

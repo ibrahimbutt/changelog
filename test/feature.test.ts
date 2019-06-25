@@ -1,7 +1,7 @@
 import CommitLog from "../src/commitLog";
 import FileSystem from "../src/fileSystem";
 import Changelog from "../src/changelog";
-import ChangelogFormatter from "../src/changelogFormatter";
+import ChangelogFormatter from "../src/formatters/changelogFormatter";
 
 import ActualCommitFormatter from "./lib/actualCommitFormatter";
 import StubExecSyncGitLog from "./lib/stubExecSyncGitLog";

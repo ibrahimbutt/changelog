@@ -1,4 +1,4 @@
-import CommitFormatter from "../../src/commitsFormatter";
+import CommitFormatter from "../../src/formatters/commitsFormatter";
 
 describe("CommitFormatter", () => {
   describe("#format", () => {

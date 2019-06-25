@@ -1,5 +1,5 @@
-import SectionFormatter from "../src/sectionFormatter";
-import Commit from "../src/commit";
+import SectionFormatter from "./sectionFormatter";
+import Commit from "../commit";
 
 export default class VersionFormatter {
   private static SectionFormatter = SectionFormatter;

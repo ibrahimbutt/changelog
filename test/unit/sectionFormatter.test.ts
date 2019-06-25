@@ -1,4 +1,4 @@
-import SectionFormatter from "../../src/sectionFormatter";
+import SectionFormatter from "../../src/formatters/sectionFormatter";
 
 describe("SectionFormatter", () => {
   describe("#format", () => {

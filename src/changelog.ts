@@ -1,4 +1,4 @@
-import ChangelogFormatter from "./changelogFormatter";
+import ChangelogFormatter from "./formatters/changelogFormatter";
 
 export default class Changelog {
   private commits;

@@ -1,5 +1,5 @@
 import Changelog from "../../src/changelog";
-import ChangelogFormatter from "../../src/changelogFormatter";
+import ChangelogFormatter from "../../src/formatters/changelogFormatter";
 
 const testData = require("../lib/data");
 

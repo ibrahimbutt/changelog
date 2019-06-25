@@ -1,6 +1,6 @@
 const { execSync } = require("child_process");
 
-import VersionFormatter from "../../src/versionFormatter";
+import VersionFormatter from "../../src/formatters/versionFormatter";
 
 describe("VersionFormatter", () => {
   describe("#format", () => {

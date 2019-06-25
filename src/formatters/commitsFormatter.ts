@@ -1,4 +1,4 @@
-import Commit from "./commit";
+import Commit from "../commit";
 
 export default class CommitsFormatter {
   static format(commits: Array<Commit>): string {

@@ -1,4 +1,4 @@
-import ChangelogFormatter from "../../src/changelogFormatter";
+import ChangelogFormatter from "../../src/formatters/changelogFormatter";
 const testData = require("../lib/data");
 
 describe("ChangeLog Formatter", () => {
