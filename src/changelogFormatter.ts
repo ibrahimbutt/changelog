@@ -48,8 +48,7 @@ export default class ChangelogFormatter {
   }
 
   private static formatAddedSection(commits): string {
-    const header = "### Added\n\n";
-    return this.formatSection(header, commits);
+    return this.formatSection("### Added\n\n", commits);
   }
 
   private static getFixCommits(commits): Array<Commit> {
@@ -57,8 +56,7 @@ export default class ChangelogFormatter {
   }
 
   private static formatFixedSection(commits): string {
-    const header = "### Fixed\n\n";
-    return this.formatSection(header, commits);
+    return this.formatSection("### Fixed\n\n", commits);
   }
 
   private static formatSection(header, commits): string {
