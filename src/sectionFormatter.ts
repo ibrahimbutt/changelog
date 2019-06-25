@@ -4,7 +4,7 @@ import Commit from "./commit";
 export default class SectionFormatter {
   private static CommitsFormatter = CommitsFormatter;
 
-  static format(header, commits: Array<Commit>) {
+  static format(header: string, commits: Array<Commit>): string {
     return `### ${header}\n\n${this.formatCommits(commits)}`;
   }
 

@@ -1,5 +1,5 @@
 import Commit from "./commit";
-import SectionFormatter from "./sectionFormatter";
+import VersionFormatter from "./versionFormatter";
 
 export default class ChangelogFormatter {
   private static VersionFormatter = VersionFormatter;
@@ -7,15 +7,16 @@ export default class ChangelogFormatter {
   static format(commits: Array<Commit>): string {
     var content = "";
 
-    const versions = this.filterVersions(commits);
+    const versions: Array<Array<Commit>> = this.filterVersions(commits);
 
     for (let i = 0; i < versions.length; i++) {
-      content += this.VersionFormatter.format(versions[i]);
+      const versionCommits: Array<Commit> = versions[i];
+      content += this.VersionFormatter.format(versionCommits);
     }
     return content;
   }
 
-  private static filterVersions(commits: Array<Commit>): Array<Commit> {
+  private static filterVersions(commits: Array<Commit>): Array<Array<Commit>> {
     const versionIndexes = [];
 
     commits.forEach((commit, index) => {
@@ -26,7 +27,7 @@ export default class ChangelogFormatter {
 
     const numberOfVersions = versionIndexes.length;
 
-    const versions = [];
+    const versions: Array<Array<Commit>> = [];
     for (let i = 0; i < numberOfVersions; i++) {
       const versionCommits = commits.slice(
         versionIndexes[i],
