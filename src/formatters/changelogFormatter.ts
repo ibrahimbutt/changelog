@@ -5,18 +5,42 @@ export default class ChangelogFormatter {
   private static VersionFormatter = VersionFormatter;
 
   static format(commits: Array<Commit>): string {
-    var content = "";
-
     const versions: Array<Array<Commit>> = this.filterVersions(commits);
 
-    for (let i = 0; i < versions.length; i++) {
-      const versionCommits: Array<Commit> = versions[i];
-      content += this.VersionFormatter.format(versionCommits);
-    }
-    return content;
+    return this.formatVersions(versions);
   }
 
   private static filterVersions(commits: Array<Commit>): Array<Array<Commit>> {
+    const versionIndexes: Array<number> = this.getVersionIndices(commits);
+    const numberOfVersions: number = versionIndexes.length;
+
+    const versions: Array<Array<Commit>> = [];
+    for (let i = 0; i < numberOfVersions; i++) {
+      const versionCommits = this.getVersionCommits(commits, {
+        start: versionIndexes[i],
+        end: versionIndexes[i + 1]
+      });
+      versions.push(versionCommits);
+    }
+
+    return versions;
+  }
+
+  private static getVersionCommits(commits, versionLocation) {
+    return commits.slice(versionLocation.start, versionLocation.end);
+  }
+
+  private static formatVersions(versions: Array<Array<Commit>>) {
+    return versions.reduce((content, version) => {
+      return (content += this.formatVersion(version));
+    }, "");
+  }
+
+  private static formatVersion(version: Array<Commit>) {
+    return this.VersionFormatter.format(version);
+  }
+
+  private static getVersionIndices(commits: Array<Commit>) {
     const versionIndexes = [];
 
     commits.forEach((commit, index) => {
@@ -25,25 +49,6 @@ export default class ChangelogFormatter {
       }
     });
 
-    const numberOfVersions = versionIndexes.length;
-
-    const versions: Array<Array<Commit>> = [];
-    for (let i = 0; i < numberOfVersions; i++) {
-      const versionCommits = commits.slice(
-        versionIndexes[i],
-        versionIndexes[i + 1]
-      );
-      versions.push(versionCommits);
-    }
-
-    return versions;
-  }
-
-  private static getFeatureCommits(commits: Array<Commit>): Array<Commit> {
-    return commits.filter(commit => commit.getDetails().match(/^feat/));
-  }
-
-  private static getFixCommits(commits: Array<Commit>): Array<Commit> {
-    return commits.filter(commit => commit.getDetails().match(/^fix/));
+    return versionIndexes;
   }
 }
