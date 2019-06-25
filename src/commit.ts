@@ -1,11 +1,11 @@
 export default class Commit {
-  private details: String;
+  private details: string;
 
-  constructor(details: String) {
+  constructor(details: string) {
     this.details = details;
   }
 
-  public getDetails(): String {
+  public getDetails(): string {
     return this.details;
   }
 }

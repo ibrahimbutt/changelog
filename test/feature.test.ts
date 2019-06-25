@@ -67,8 +67,8 @@ describe("Feature Tests", () => {
 
     let content = changelog.content();
     const expected = {
-      first: `### Added\n\n- ${testData.commits.first}\n`,
-      second: `### Fixed\n\n- ${testData.commits.second}\n`
+      first: `### Added\n\n- option to hide device serial\n`,
+      second: `### Fixed\n\n- retrieve device name correctly\n`
     };
 
     expect(content).toContain(expected.first);
@@ -92,8 +92,8 @@ describe("Feature Tests", () => {
     let content = changelog.content();
 
     const expected = {
-      first: `## v1.0.0\n\n### Added\n\n- ${testData.commits.first}\n`,
-      second: `## v0.1.0\n\n### Added\n\n- ${testData.commits.third}\n`
+      first: `## v1.0.0\n\n### Added\n\n- option to hide device serial\n`,
+      second: `## v0.1.0\n\n### Added\n\n- device serial getter\n`
     };
 
     expect(content).toContain(expected.first);

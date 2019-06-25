@@ -1,6 +1,8 @@
 import Commit from "./commit";
+import CommitsFormatter from "./commitsFormatter";
 
 export default class ChangelogFormatter {
+  private static CommitsFormatter = CommitsFormatter;
   static format(commits: Array<Commit>): string {
     var content = "";
 
@@ -60,17 +62,6 @@ export default class ChangelogFormatter {
   }
 
   private static formatSection(header, commits): string {
-    return header + this.formatCommits(commits);
-  }
-
-  private static formatCommits(commits): string {
-    let content = "";
-    commits.forEach(commit => {
-      content += this.formatCommit(commit);
-    });
-    return content;
-  }
-  private static formatCommit(commit): string {
-    return `- ${commit.getDetails()}\n`;
+    return header + this.CommitsFormatter.format(commits);
   }
 }
