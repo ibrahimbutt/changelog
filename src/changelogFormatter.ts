@@ -1,8 +1,9 @@
 import Commit from "./commit";
-import CommitsFormatter from "./commitsFormatter";
+import SectionFormatter from "./sectionFormatter";
 
 export default class ChangelogFormatter {
-  private static CommitsFormatter = CommitsFormatter;
+  private static SectionFormatter = SectionFormatter;
+
   static format(commits: Array<Commit>): string {
     var content = "";
 
@@ -12,8 +13,14 @@ export default class ChangelogFormatter {
       const featureCommits = this.getFeatureCommits(versions[i]);
       const fixCommits = this.getFixCommits(versions[i]);
 
-      const addedSection: string = this.formatAddedSection(featureCommits);
-      const fixedSection: string = this.formatFixedSection(fixCommits);
+      const addedSection: string = this.SectionFormatter.format(
+        "Added",
+        featureCommits
+      );
+      const fixedSection: string = this.SectionFormatter.format(
+        "Fixed",
+        fixCommits
+      );
 
       const version = versions[i][0].getDetails().match(/v\d+\.\d+.\d+/);
       content +=
@@ -49,19 +56,7 @@ export default class ChangelogFormatter {
     return commits.filter(commit => commit.getDetails().match(/^feat/));
   }
 
-  private static formatAddedSection(commits): string {
-    return this.formatSection("### Added\n\n", commits);
-  }
-
   private static getFixCommits(commits): Array<Commit> {
     return commits.filter(commit => commit.getDetails().match(/^fix/));
-  }
-
-  private static formatFixedSection(commits): string {
-    return this.formatSection("### Fixed\n\n", commits);
-  }
-
-  private static formatSection(header, commits): string {
-    return header + this.CommitsFormatter.format(commits);
   }
 }
