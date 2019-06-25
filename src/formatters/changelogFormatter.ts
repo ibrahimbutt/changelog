@@ -26,7 +26,10 @@ export default class ChangelogFormatter {
     return versions;
   }
 
-  private static getVersionCommits(commits, versionLocation) {
+  private static getVersionCommits(
+    commits: Array<Commit>,
+    versionLocation: any
+  ) {
     return commits.slice(versionLocation.start, versionLocation.end);
   }
 
@@ -41,7 +44,7 @@ export default class ChangelogFormatter {
   }
 
   private static getVersionIndices(commits: Array<Commit>) {
-    const versionIndexes = [];
+    const versionIndexes: Array<number> = [];
 
     commits.forEach((commit, index) => {
       if (commit.getDetails().includes("tag: v")) {

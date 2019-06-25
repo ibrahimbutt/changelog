@@ -1,11 +1,10 @@
-import ChangelogFormatter from "./formatters/changelogFormatter";
 import Commit from "./commit";
 
 export default class Changelog {
-  private commits;
-  private changelogFormatter;
+  private commits: Array<Commit>;
+  private changelogFormatter: any;
 
-  constructor(commits: Array<Commit>, ChangelogFormatter) {
+  constructor(commits: Array<Commit>, ChangelogFormatter: any) {
     this.commits = commits;
     this.changelogFormatter = ChangelogFormatter;
   }
@@ -14,7 +13,7 @@ export default class Changelog {
     return this.format(this.commits);
   }
 
-  private format(commits) {
+  private format(commits: Array<Commit>) {
     return this.changelogFormatter.format(commits);
   }
 }
