@@ -82,4 +82,24 @@ describe("Commit", () => {
       });
     });
   });
+
+  describe(`#isRelease`, () => {
+    test(`returns true`, () => {
+      const expected = true;
+
+      const commit = new Commit(data.commits.release.one);
+      const actual = commit.isRelease();
+
+      expect(actual).toEqual(expected);
+    });
+
+    test(`returns false`, () => {
+      const expected = false;
+
+      const commit = new Commit(data.commits.feature.scoped);
+      const actual = commit.isRelease();
+
+      expect(actual).toEqual(expected);
+    });
+  });
 });

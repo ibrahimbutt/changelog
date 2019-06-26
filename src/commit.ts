@@ -23,4 +23,8 @@ export default class Commit {
     const dateMatcherRegex = /(Mon|Tue|Wed|Thu|Fri|Sat|Sun+),\s(\d+\s\w{3}\s\d{4}).+/;
     return this.details.match(dateMatcherRegex)[2];
   }
+
+  public isRelease(): boolean {
+    return this.details.includes("tag: v");
+  }
 }
