@@ -34,7 +34,7 @@ describe("Commit", () => {
       });
     });
 
-    describe(`Given '${data.commits.bugfix.stanard}'`, () => {
+    describe(`Given '${data.commits.bugfix.standard}'`, () => {
       test(`returns 'fix'`, () => {
         const expected: string = "fix";
 
