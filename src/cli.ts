@@ -4,12 +4,13 @@ import FileSystem from "./fileSystem";
 import Changelog from "./changelog";
 import ChangelogFormatter from "./formatters/changelogFormatter";
 import CommitLog from "./commitLog";
+import Commit from "./commit";
 
-const commitLog = new CommitLog();
-const commits = commitLog.getCommits();
+const commitLog: CommitLog = new CommitLog();
+const commits: Array<Commit> = commitLog.getCommits();
 
-const formatter = ChangelogFormatter;
-const changelog = new Changelog(commits, formatter);
-const content = changelog.content();
+const formatter: any = ChangelogFormatter;
+const changelog: Changelog = new Changelog(commits, formatter);
+const content: string = changelog.content();
 
 FileSystem.create("CHANGELOG.md", content);
