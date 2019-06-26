@@ -1,64 +1,113 @@
-import CommitFormatter from "../../src/formatters/commitsFormatter";
+import CommitsFormatter from "../../src/formatters/commitsFormatter";
+import Commit from "../../src/commit";
+const data = require("../data");
 
-describe("CommitFormatter", () => {
+jest.mock("../../src/commit");
+
+describe("Commits", () => {
+  beforeEach(() => {
+    Commit.mockClear();
+  });
+
   describe("#format", () => {
-    test("returns '- option to hide device serial'", () => {
-      const commit = [
-        {
-          getDetails: () => "feat: option to hide device serial"
-        }
+    test(`returns '${data.formattedCommits.feature.standard}'`, () => {
+      Commit.mockImplementation(() => {
+        return {
+          getDetails: () => data.commits.feature.standard,
+          getScope: () => false,
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+        };
+      });
+
+      const commits: Array<Commit> = [
+        new Commit(data.commits.feature.standard)
       ];
-      const expected = "- option to hide device serial\n";
-      const actual = CommitFormatter.format(commit);
+
+      const expected: string = `${data.formattedCommits.feature.standard}\n`;
+      const actual: string = CommitsFormatter.format(commits);
+
       expect(actual).toEqual(expected);
     });
 
     test("returns '- device serial getter'", () => {
-      const commit = [
-        {
-          getDetails: () => "feat: device serial getter"
-        }
-      ];
+      Commit.mockImplementation(() => {
+        return {
+          getDetails: () => "feat: device serial getter",
+          getScope: () => false,
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+        };
+      });
 
-      const expected = "- device serial getter\n";
-      const actual = CommitFormatter.format(commit);
+      const commits: Array<Commit> = [new Commit("feat: device serial getter")];
+
+      const expected: string = "- device serial getter\n";
+      const actual: string = CommitsFormatter.format(commits);
+
       expect(actual).toEqual(expected);
     });
 
     test("returns '- retrieve device name correctly'", () => {
-      const commit = [
-        {
-          getDetails: () => "fix: retrieve device name correctly"
-        }
-      ];
+      Commit.mockImplementation(() => {
+        return {
+          getDetails: () => "fix: retrieve device name correctly",
+          getScope: () => false,
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+        };
+      });
 
-      const expected = "- retrieve device name correctly\n";
-      const actual = CommitFormatter.format(commit);
+      const commits: Array<Commit> = [new Commit("feat: device serial getter")];
+
+      const expected: string = "- retrieve device name correctly\n";
+      const actual: string = CommitsFormatter.format(commits);
+
       expect(actual).toEqual(expected);
     });
 
     test("returns '- device serial getter - retrieve device name correctly'", () => {
-      const commit = [
-        { getDetails: () => "fix: device serial getter" },
-        {
-          getDetails: () => "fix: retrieve device name correctly"
-        }
+      Commit.mockImplementationOnce(() => {
+        return {
+          getDetails: () => "fix: device serial getter",
+          getScope: () => false,
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+        };
+      }).mockImplementationOnce(() => {
+        return {
+          getDetails: () => "fix: retrieve device name correctly",
+          getScope: () => false,
+          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+        };
+      });
+
+      const commits: Array<Commit> = [
+        new Commit("fix: device serial getter"),
+        new Commit("fix: retrieve device name correctly")
       ];
 
-      const expected =
+      const expected: string =
         "- device serial getter\n- retrieve device name correctly\n";
-      const actual = CommitFormatter.format(commit);
+      const actual: string = CommitsFormatter.format(commits);
+
       expect(actual).toEqual(expected);
     });
 
     describe("When commit has a scope", () => {
-      test("returns '- *device*: device serial getter'", () => {
-        const commit = [
-          { getDetails: () => "fix(device): device serial getter" }
+      test("returns '- **device**: device serial getter'", () => {
+        Commit.mockImplementation(() => {
+          return {
+            getDetails: () => "fix(device): device serial getter",
+            getScope: () => "device",
+            getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          };
+        });
+
+        const commits: Array<Commit> = [
+          new Commit("fix(device): device serial getter")
         ];
 
-        const expected = "- **device**: device serial getter\n";
-        const actual = CommitFormatter.format(commit);
+        const expected: string = "- **device**: device serial getter\n";
+        const actual: string = CommitsFormatter.format(commits);
+
         expect(actual).toEqual(expected);
       });
     });

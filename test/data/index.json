@@ -13,6 +13,16 @@
       "scoped": "fix(scoped): a scoped bugfix commit Fri, 21 Jun 2019 18:57:10 +0100"
     }
   },
+  "formattedCommits": {
+    "feature": {
+      "standard": "- a feature commit",
+      "scoped": "- **scoped**: a scoped feature commit"
+    },
+    "bugfix": {
+      "standard": "- a bugfix commit",
+      "scoped": "- **scoped**: a scoped bugfix commit"
+    }
+  },
   "logs": {
     "featureCommits": [
       "feat: a feature commit Fri, 21 Jun 2019 18:57:10 +0100",

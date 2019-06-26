@@ -10,20 +10,20 @@ export default class CommitsFormatter {
   }
 
   private static formatCommit(commit: Commit): string {
-    const scope: string | false = this.getScope(commit);
-    const commitWithoutType: string = this.removeType(commit);
+    const scope: string | false = commit.getScope(commit);
+    const cleanedSubject: string = this.removeTypeAndDate(commit);
 
-    return `- ${scope ? `**${scope}**: ` : ""}${commitWithoutType}\n`;
+    return `- ${scope ? `**${scope}**: ` : ""}${cleanedSubject}\n`;
   }
 
-  private static removeType(commit: Commit): string {
+  private static removeTypeAndDate(commit: Commit): string {
     return commit
       .getDetails()
-      .replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "");
+      .replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "")
+      .replace(" " + commit.getDate(), "");
   }
 
-  private static getScope(commit: Commit): string | false {
-    const scope = commit.getDetails().match(/^\w+\((\w+)\)/);
-    return scope !== null ? scope[1] : false;
+  private static removeDate(commit: Commit) {
+    return commit.getDetails().replace(commit.getDate(), "");
   }
 }

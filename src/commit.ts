@@ -14,9 +14,10 @@ export default class Commit {
     return this.details.match(typeMatcherRegex)[1];
   }
 
-  public getScope(): string {
+  public getScope(): string | false {
     const scopeMatcherRegex = /^\w+\((\w+)\):/;
-    return this.details.match(scopeMatcherRegex)[1];
+    const scope = this.details.match(scopeMatcherRegex);
+    return scope !== null ? scope[1] : false;
   }
 
   public getDate(): string {
