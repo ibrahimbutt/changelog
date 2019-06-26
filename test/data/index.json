@@ -1,0 +1,40 @@
+{
+  "commits": {
+    "release": {
+      "one": "chore(release): release v0.1.0 (tag: v0.1.0) Fri, 21 Jun 2019 18:57:10 +0100",
+      "two": "chore(release): release v1.0.0 (tag: v1.0.0) Fri, 21 Jun 2019 18:57:10 +0100"
+    },
+    "feature": {
+      "standard": "feat: a feature commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "scoped": "feat(scoped): a scoped feature commit Fri, 21 Jun 2019 18:57:10 +0100"
+    },
+    "bugfix": {
+      "standard": "fix: a bugfix commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "scoped": "fix(scoped): a scoped bugfix commit Fri, 21 Jun 2019 18:57:10 +0100"
+    }
+  },
+  "logs": {
+    "featureCommits": [
+      "feat: a feature commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "feat(scoped): a scoped feature commit Fri, 21 Jun 2019 18:57:10 +0100"
+    ],
+    "bugfixCommits": [
+      "fix: a bugfix commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "fix(scoped): a scoped bugfix commit Fri, 21 Jun 2019 18:57:10 +0100"
+    ],
+    "featureAndBugfixCommits": [
+      "feat: a feature commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "feat(scoped): a scoped feature commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "fix: a bugfix commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "fix(scoped): a scoped bugfix commit Fri, 21 Jun 2019 18:57:10 +0100"
+    ],
+    "singleRelease": [
+      "chore(release): release v1.0.0 (tag: v1.0.0) Fri, 21 Jun 2019 18:57:10 +0100",
+      "feat: a feature commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "fix(scoped): a scoped bugfix commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "chore(release): release v0.1.0 (tag: v0.1.0) Fri, 21 Jun 2019 18:57:10 +0100",
+      "fix: a bugfix commit Fri, 21 Jun 2019 18:57:10 +0100",
+      "feat(scoped): a scoped feature commit Fri, 21 Jun 2019 18:57:10 +0100"
+    ]
+  }
+}
