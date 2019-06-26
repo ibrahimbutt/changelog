@@ -9,11 +9,11 @@ export default class Changelog {
     this.changelogFormatter = ChangelogFormatter;
   }
 
-  public content() {
+  public content(): string {
     return this.format(this.commits);
   }
 
-  private format(commits: Array<Commit>) {
+  private format(commits: Array<Commit>): string {
     return this.changelogFormatter.format(commits);
   }
 }

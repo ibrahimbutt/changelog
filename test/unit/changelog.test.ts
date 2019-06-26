@@ -19,25 +19,25 @@ describe("Changelog", () => {
 
   describe("#content", () => {
     test("returns 'the content'", () => {
-      const expected = "the content";
+      const expected: string = "the content";
 
       ChangelogFormatter.format = jest.fn(() => expected);
-      const commits = [new Commit("")];
+      const commits: Array<Commit> = [new Commit("")];
 
-      const changelog = new Changelog(commits, ChangelogFormatter);
-      const actual = changelog.content();
+      const changelog: Changelog = new Changelog(commits, ChangelogFormatter);
+      const actual: string = changelog.content();
 
       expect(actual).toEqual(expected);
     });
 
     test("returns 'more content'", () => {
-      const expected = "more content";
+      const expected: string = "more content";
 
       ChangelogFormatter.format = jest.fn(() => expected);
-      const commits = [new Commit("")];
+      const commits: Array<Commit> = [new Commit("")];
 
-      const changelog = new Changelog(commits, ChangelogFormatter);
-      const actual = changelog.content();
+      const changelog: Changelog = new Changelog(commits, ChangelogFormatter);
+      const actual: string = changelog.content();
 
       expect(actual).toEqual(expected);
     });
