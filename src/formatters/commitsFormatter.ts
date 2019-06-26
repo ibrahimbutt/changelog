@@ -10,7 +10,7 @@ export default class CommitsFormatter {
   }
 
   private static formatCommit(commit: Commit): string {
-    const scope: string | false = commit.getScope(commit);
+    const scope: string | false = commit.getScope();
     const cleanedSubject: string = this.removeTypeAndDate(commit);
 
     return `- ${scope ? `**${scope}**: ` : ""}${cleanedSubject}\n`;
