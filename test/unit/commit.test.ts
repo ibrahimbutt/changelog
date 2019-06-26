@@ -4,19 +4,19 @@ const data = require("../data");
 describe("Commit", () => {
   describe("#getDetails", () => {
     test(`returns '${data.commits.bugfix.standard}'`, () => {
-      const expected = data.commits.feature.standard;
+      const expected: string = data.commits.feature.standard;
 
-      const commit = new Commit(data.commits.feature.standard);
-      const actual = commit.getDetails();
+      const commit: Commit = new Commit(data.commits.feature.standard);
+      const actual: string = commit.getDetails();
 
       expect(actual).toEqual(expected);
     });
 
     test(`returns '${data.commits.bugfix.standard}'`, () => {
-      const expected = data.commits.bugfix.standard;
+      const expected: string = data.commits.bugfix.standard;
 
-      const commit = new Commit(data.commits.bugfix.standard);
-      const actual = commit.getDetails();
+      const commit: Commit = new Commit(data.commits.bugfix.standard);
+      const actual: string = commit.getDetails();
 
       expect(actual).toEqual(expected);
     });
@@ -25,10 +25,10 @@ describe("Commit", () => {
   describe("#getType", () => {
     describe(`Given '${data.commits.feature.standard}'`, () => {
       test(`returns 'feat'`, () => {
-        const expected = "feat";
+        const expected: string = "feat";
 
-        const commit = new Commit(data.commits.feature.standard);
-        const actual = commit.getType();
+        const commit: Commit = new Commit(data.commits.feature.standard);
+        const actual: string = commit.getType();
 
         expect(actual).toEqual(expected);
       });
@@ -36,10 +36,10 @@ describe("Commit", () => {
 
     describe(`Given '${data.commits.bugfix.stanard}'`, () => {
       test(`returns 'fix'`, () => {
-        const expected = "fix";
+        const expected: string = "fix";
 
-        const commit = new Commit(data.commits.bugfix.standard);
-        const actual = commit.getType();
+        const commit: Commit = new Commit(data.commits.bugfix.standard);
+        const actual: string = commit.getType();
 
         expect(actual).toEqual(expected);
       });
@@ -49,10 +49,10 @@ describe("Commit", () => {
   describe("#getScope", () => {
     describe(`Given '${data.commits.feature.scoped}'`, () => {
       test(`returns 'scoped'`, () => {
-        const expected = "scoped";
+        const expected: string = "scoped";
 
-        const commit = new Commit(data.commits.feature.scoped);
-        const actual = commit.getScope();
+        const commit: Commit = new Commit(data.commits.feature.scoped);
+        const actual: string = commit.getScope();
 
         expect(actual).toEqual(expected);
       });
@@ -60,10 +60,10 @@ describe("Commit", () => {
 
     describe(`Given '${data.commits.bugfix.scoped}'`, () => {
       test(`returns 'scoped'`, () => {
-        const expected = "scoped";
+        const expected: string = "scoped";
 
-        const commit = new Commit(data.commits.bugfix.scoped);
-        const actual = commit.getScope();
+        const commit: Commit = new Commit(data.commits.bugfix.scoped);
+        const actual: string = commit.getScope();
 
         expect(actual).toEqual(expected);
       });
@@ -73,9 +73,9 @@ describe("Commit", () => {
   describe("#getDate", () => {
     describe(`Given '${data.commits.feature.scoped}'`, () => {
       test(`returns '21 Jun 2019'`, () => {
-        const expected = "21 Jun 2019";
+        const expected: string = "21 Jun 2019";
 
-        const commit = new Commit(data.commits.feature.scoped);
+        const commit: Commit = new Commit(data.commits.feature.scoped);
         const actual = commit.getDate();
 
         expect(actual).toEqual(expected);
@@ -85,19 +85,19 @@ describe("Commit", () => {
 
   describe(`#isRelease`, () => {
     test(`returns true`, () => {
-      const expected = true;
+      const expected: boolean = true;
 
-      const commit = new Commit(data.commits.release.one);
-      const actual = commit.isRelease();
+      const commit: Commit = new Commit(data.commits.release.one);
+      const actual: boolean = commit.isRelease();
 
       expect(actual).toEqual(expected);
     });
 
     test(`returns false`, () => {
-      const expected = false;
+      const expected: boolean = false;
 
-      const commit = new Commit(data.commits.feature.scoped);
-      const actual = commit.isRelease();
+      const commit: Commit = new Commit(data.commits.feature.scoped);
+      const actual: boolean = commit.isRelease();
 
       expect(actual).toEqual(expected);
     });
