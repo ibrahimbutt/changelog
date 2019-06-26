@@ -15,7 +15,6 @@ describe("Commits", () => {
         return {
           getDetails: () => data.commits.feature.standard,
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
           getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });

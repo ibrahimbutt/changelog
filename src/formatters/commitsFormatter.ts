@@ -22,8 +22,4 @@ export default class CommitsFormatter {
       .replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "")
       .replace(" " + commit.getDate(), "");
   }
-
-  private static removeDate(commit: Commit) {
-    return commit.getDetails().replace(commit.getDate(), "");
-  }
 }
