@@ -50,5 +50,17 @@ describe("CommitFormatter", () => {
       const actual = CommitFormatter.format(commit);
       expect(actual).toEqual(expected);
     });
+
+    describe("When commit has a scope", () => {
+      test("returns '- *device*: device serial getter'", () => {
+        const commit = [
+          { getDetails: () => "fix(device): device serial getter" }
+        ];
+
+        const expected = "- *device*: device serial getter\n";
+        const actual = CommitFormatter.format(commit);
+        expect(actual).toEqual(expected);
+      });
+    });
   });
 });

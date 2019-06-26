@@ -10,10 +10,19 @@ export default class CommitsFormatter {
   }
 
   private static formatCommit(commit: Commit): string {
-    return `- ${this.removeType(commit.getDetails())}\n`;
+    const scope: string | false = this.getScope(commit);
+
+    return `- ${scope ? `*${scope}*: ` : ""}${this.removeType(
+      commit.getDetails()
+    )}\n`;
   }
 
   private static removeType(commit: string): string {
-    return commit.replace(/^feat:\s|^fix:\s/, "");
+    return commit.replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "");
+  }
+
+  private static getScope(commit: Commit): string | false {
+    const scope = commit.getDetails().match(/^\w+\((\w+)\)/);
+    return scope !== null ? scope[1] : false;
   }
 }
