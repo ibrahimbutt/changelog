@@ -11,14 +11,15 @@ export default class CommitsFormatter {
 
   private static formatCommit(commit: Commit): string {
     const scope: string | false = this.getScope(commit);
+    const commitWithoutType: string = this.removeType(commit);
 
-    return `- ${scope ? `*${scope}*: ` : ""}${this.removeType(
-      commit.getDetails()
-    )}\n`;
+    return `- ${scope ? `*${scope}*: ` : ""}${commitWithoutType}\n`;
   }
 
-  private static removeType(commit: string): string {
-    return commit.replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "");
+  private static removeType(commit: Commit): string {
+    return commit
+      .getDetails()
+      .replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "");
   }
 
   private static getScope(commit: Commit): string | false {
