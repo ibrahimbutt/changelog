@@ -17,7 +17,6 @@ describe("VersionFormatter", () => {
         "### Added\n\n" +
         "- option to hide device serial\n" +
         "\n" +
-        "### Fixed\n\n" +
         "\n";
       expect(actual).toEqual(expected);
     });
@@ -35,7 +34,6 @@ describe("VersionFormatter", () => {
         "### Added\n\n" +
         "- device serial getter\n" +
         "\n" +
-        "### Fixed\n\n" +
         "\n";
 
       expect(actual).toEqual(expected);

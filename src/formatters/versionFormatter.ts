@@ -44,10 +44,19 @@ export default class VersionFormatter {
   }
 
   private static formatSections(sections: Array<Array<Commit>>): string {
-    const addedSection: string = this.formatSection("Added", sections[0]);
-    const fixedSection: string = this.formatSection("Fixed", sections[1]);
+    const addedSection: string = sections[0].length
+      ? this.formatSection("Added", sections[0])
+      : "";
+    const fixedSection: string = sections[1].length
+      ? this.formatSection("Fixed", sections[1])
+      : "";
 
-    return addedSection + "\n" + fixedSection + "\n";
+    return (
+      (addedSection ? addedSection : "") +
+      "\n" +
+      (fixedSection ? fixedSection : "") +
+      "\n"
+    );
   }
 
   private static formatSection(header: string, commits: Array<Commit>): string {

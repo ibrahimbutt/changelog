@@ -100,13 +100,13 @@ describe("ChangeLog Formatter", () => {
         "### Added\n\n" +
         "- option to hide device serial\n" +
         "\n" +
-        "### Fixed\n\n" +
+        // "### Fixed\n\n" +
         "\n" +
         "## v0.1.0\n\n" +
         "### Added\n\n" +
         "- device serial getter\n" +
         "\n" +
-        "### Fixed\n\n" +
+        // "### Fixed\n\n" +
         "\n";
 
       expect(actual).toEqual(expected);
