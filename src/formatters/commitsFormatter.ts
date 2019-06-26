@@ -13,7 +13,7 @@ export default class CommitsFormatter {
     const scope: string | false = this.getScope(commit);
     const commitWithoutType: string = this.removeType(commit);
 
-    return `- ${scope ? `*${scope}*: ` : ""}${commitWithoutType}\n`;
+    return `- ${scope ? `**${scope}**: ` : ""}${commitWithoutType}\n`;
   }
 
   private static removeType(commit: Commit): string {

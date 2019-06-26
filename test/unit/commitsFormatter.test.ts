@@ -57,7 +57,7 @@ describe("CommitFormatter", () => {
           { getDetails: () => "fix(device): device serial getter" }
         ];
 
-        const expected = "- *device*: device serial getter\n";
+        const expected = "- **device**: device serial getter\n";
         const actual = CommitFormatter.format(commit);
         expect(actual).toEqual(expected);
       });
