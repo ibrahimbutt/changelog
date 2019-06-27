@@ -7,7 +7,6 @@ export default class VersionFormatter {
   static format(commits: Array<Commit>): string {
     const version: string = this.getVersion(commits);
     const sections: Array<Array<Commit>> = this.getSections(commits);
-
     return this.formatVersion(version, sections);
   }
 
@@ -27,14 +26,13 @@ export default class VersionFormatter {
   private static getSections(commits: Array<Commit>): Array<Array<Commit>> {
     const featureCommits: Array<Commit> = this.getFeatureCommits(commits);
     const fixCommits: Array<Commit> = this.getFixCommits(commits);
-
     return [featureCommits, fixCommits];
   }
 
   private static getFeatureCommits(commits: Array<Commit>): Array<Commit> {
-    return commits.filter((commit: Commit) =>
-      commit.getDetails().match(/^feat/)
-    );
+    return commits.filter((commit: Commit) => {
+      return commit.getDetails().match(/^feat/);
+    });
   }
 
   private static getFixCommits(commits: Array<Commit>): Array<Commit> {
@@ -52,10 +50,8 @@ export default class VersionFormatter {
       : "";
 
     return (
-      (addedSection ? addedSection : "") +
-      "\n" +
-      (fixedSection ? fixedSection : "") +
-      "\n"
+      (addedSection ? addedSection + "\n" : "") +
+      (fixedSection ? fixedSection + "\n" : "")
     );
   }
 
