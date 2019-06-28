@@ -23,7 +23,7 @@ feat: user can make an account Fri, 20 Jun 2019 18:57:10 +0100
 
 A `CHANGELOG.md` with this commit history will be formatted as:
 
-```md
+```markdown
 ## v1.1.0 – 21 Jun 2019
 
 ### Added
