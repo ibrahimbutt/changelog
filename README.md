@@ -1,5 +1,7 @@
 # Changelog
 
+[![Build Status](https://travis-ci.com/ibrahimbutt/changelog.svg?branch=master)](https://travis-ci.com/ibrahimbutt/changelog) [![Maintainability](https://api.codeclimate.com/v1/badges/2a51ff08766a58fabcdd/maintainability)](https://codeclimate.com/github/ibrahimbutt/changelog/maintainability) <a href="https://codeclimate.com/github/ibrahimbutt/changelog/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2a51ff08766a58fabcdd/test_coverage" /></a>
+
 Create or update your `CHANGELOG.md` with a single command. For this to work, your commits must be following the [Conventional Commits](www.conventionalcommits.org) format.
 
 ## Usage
