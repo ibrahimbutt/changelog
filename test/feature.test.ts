@@ -6,15 +6,15 @@ import ChangelogFormatter from "../src/formatters/changelogFormatter";
 import ActualCommitFormatter from "./lib/actualCommitFormatter";
 import StubExecSyncGitLog from "./lib/stubExecSyncGitLog";
 
-const testData = require("./lib/data");
-
 const fs = require("fs");
+
+const data = require("./data");
 
 describe("Feature Tests", () => {
   test("User can retrieve commit log", () => {
     const expected = {
-      first: testData.commits.first,
-      second: testData.commits.second
+      first: data.commits.feature.standard,
+      second: data.commits.feature.scoped
     };
 
     StubExecSyncGitLog.stubCommits(expected);
@@ -29,13 +29,13 @@ describe("Feature Tests", () => {
   });
 
   test("User can save commits to a file", () => {
-    const stubbedCommits = {
-      releaseSecond: testData.releases.second,
-      first: testData.commits.first,
-      second: testData.commits.second
+    const expected = {
+      release: data.commits.release.one,
+      first: data.commits.feature.standard,
+      second: data.commits.feature.scoped
     };
 
-    StubExecSyncGitLog.stubCommits(stubbedCommits);
+    StubExecSyncGitLog.stubCommits(expected);
 
     const commitLog = new CommitLog();
     const commits = commitLog.getCommits();
@@ -51,10 +51,10 @@ describe("Feature Tests", () => {
 
   test("Changelog has Added and Fixed section", () => {
     const stubbedCommits = {
-      releaseSecond: testData.releases.second,
-      first: testData.commits.first,
-      releaseFirst: testData.releases.first,
-      second: testData.commits.second
+      releaseTwo: data.commits.release.two,
+      first: data.commits.feature.standard,
+      releaseOne: data.commits.release.one,
+      second: data.commits.bugfix.standard
     };
 
     StubExecSyncGitLog.stubCommits(stubbedCommits);
@@ -67,8 +67,8 @@ describe("Feature Tests", () => {
 
     let content = changelog.content();
     const expected = {
-      first: `### Added\n\n- option to hide device serial\n`,
-      second: `### Fixed\n\n- retrieve device name correctly\n`
+      first: `### Added\n\n${data.formattedCommits.feature.standard}\n`,
+      second: `### Fixed\n\n${data.formattedCommits.bugfix.standard}\n`
     };
 
     expect(content).toContain(expected.first);
@@ -77,10 +77,10 @@ describe("Feature Tests", () => {
 
   test("Changelog has version headers", () => {
     const stubbedCommits = {
-      releaseSecond: testData.releases.second,
-      first: testData.commits.first,
-      releaseFirst: testData.releases.first,
-      second: testData.commits.third
+      releaseTwo: data.commits.release.two,
+      first: data.commits.feature.standard,
+      releaseOne: data.commits.release.one,
+      second: data.commits.bugfix.standard
     };
 
     StubExecSyncGitLog.stubCommits(stubbedCommits);
@@ -92,8 +92,12 @@ describe("Feature Tests", () => {
     let content = changelog.content();
 
     const expected = {
-      first: `## v1.0.0\n\n### Added\n\n- option to hide device serial\n`,
-      second: `## v0.1.0\n\n### Added\n\n- device serial getter\n`
+      first: `## v1.0.0\n\n### Added\n\n${
+        data.formattedCommits.feature.standard
+      }\n`,
+      second: `## v0.1.0\n\n### Fixed\n\n${
+        data.formattedCommits.bugfix.standard
+      }\n`
     };
 
     expect(content).toContain(expected.first);

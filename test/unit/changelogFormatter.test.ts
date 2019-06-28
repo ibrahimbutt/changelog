@@ -18,13 +18,13 @@ describe("ChangeLog Formatter", () => {
         return {
           getDetails: () => data.commits.release.two,
           getScope: () => "release",
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       }).mockImplementation(() => {
         return {
           getDetails: () => data.commits.feature.standard,
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -46,13 +46,13 @@ describe("ChangeLog Formatter", () => {
         return {
           getDetails: () => data.commits.release.two,
           getScope: () => "release",
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       }).mockImplementationOnce(() => {
         return {
           getDetails: () => data.commits.feature.standard,
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -76,7 +76,7 @@ describe("ChangeLog Formatter", () => {
         return {
           getDetails: () => data.commits.release.two,
           getScope: () => "release",
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100",
           v: 1
         };
       })
@@ -84,7 +84,7 @@ describe("ChangeLog Formatter", () => {
           return {
             getDetails: () => data.commits.feature.standard,
             getScope: () => false,
-            getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
+            getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100",
             v: 1
           };
         })
@@ -92,7 +92,7 @@ describe("ChangeLog Formatter", () => {
           return {
             getDetails: () => data.commits.release.one,
             getScope: () => "release",
-            getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
+            getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100",
             v: 2
           };
         })
@@ -100,7 +100,7 @@ describe("ChangeLog Formatter", () => {
           return {
             getDetails: () => data.commits.feature.standard,
             getScope: () => false,
-            getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100",
+            getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100",
             v: 1
           };
         });
