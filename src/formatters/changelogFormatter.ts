@@ -16,7 +16,7 @@ export default class ChangelogFormatter {
 
     const versions: Array<Array<Commit>> = [];
     for (let i = 0; i < numberOfVersions; i++) {
-      const versionCommits = this.getVersionCommits(commits, {
+      const versionCommits: Array<Commit> = this.getVersionCommits(commits, {
         start: versionIndexes[i],
         end: versionIndexes[i + 1]
       });
@@ -26,24 +26,7 @@ export default class ChangelogFormatter {
     return versions;
   }
 
-  private static getVersionCommits(
-    commits: Array<Commit>,
-    versionLocation: any
-  ) {
-    return commits.slice(versionLocation.start, versionLocation.end);
-  }
-
-  private static formatVersions(versions: Array<Array<Commit>>) {
-    return versions.reduce((content, version) => {
-      return (content += this.formatVersion(version));
-    }, "");
-  }
-
-  private static formatVersion(version: Array<Commit>) {
-    return this.VersionFormatter.format(version);
-  }
-
-  private static getVersionIndices(commits: Array<Commit>) {
+  private static getVersionIndices(commits: Array<Commit>): Array<number> {
     const versionIndexes: Array<number> = [];
 
     commits.forEach((commit, index) => {
@@ -53,5 +36,22 @@ export default class ChangelogFormatter {
     });
 
     return versionIndexes;
+  }
+
+  private static getVersionCommits(
+    commits: Array<Commit>,
+    versionLocation: any
+  ): Array<Commit> {
+    return commits.slice(versionLocation.start, versionLocation.end);
+  }
+
+  private static formatVersions(versions: Array<Array<Commit>>): string {
+    return versions.reduce((content, version) => {
+      return (content += this.formatVersion(version));
+    }, "");
+  }
+
+  private static formatVersion(version: Array<Commit>): string {
+    return this.VersionFormatter.format(version);
   }
 }
