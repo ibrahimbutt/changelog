@@ -20,7 +20,11 @@ export default class VersionFormatter {
   }
 
   private static getVersion(commits: Array<Commit>): string {
-    return commits[0].getDetails().match(/v\d+\.\d+.\d+/)[0];
+    return (
+      commits[0].getDetails().match(/v\d+\.\d+.\d+/)[0] +
+      " " +
+      commits[0].getDate()
+    );
   }
 
   private static getSections(commits: Array<Commit>): Array<Array<Commit>> {
