@@ -1,54 +1,39 @@
 import SectionFormatter from "../../src/formatters/sectionFormatter";
+import CommitsFormatter from "../../src/formatters/commitsFormatter";
 import Commit from "../../src/commit";
 
 const data = require("../data");
 
-jest.mock("../../src/commit");
+jest.mock("../../src/commit", () => {
+  return jest.fn();
+});
+
+jest.mock("../../src/formatters/commitsFormatter");
 
 describe("SectionFormatter", () => {
   beforeEach(() => {
-    Commit.mockClear();
+    CommitsFormatter.format.mockReturnValue(
+      "- stubbed return of CommitsFormatter"
+    );
   });
 
   describe("#format", () => {
-    test(`returns '### Added ${
-      data.formattedCommits.feature.standard
-    }'`, () => {
-      Commit.mockImplementation(() => {
-        return {
-          getDetails: () => data.commits.feature.standard,
-          getScope: () => false,
-          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
-        };
-      });
-
+    test(`returns '### Added\\n\\n- stubbed return of CommitsFormatter'`, () => {
       const commits: Array<Commit> = [
         new Commit(data.commits.feature.standard)
       ];
 
-      const expected: string = `### Added\n\n${
-        data.formattedCommits.feature.standard
-      }\n`;
+      const expected: string = `### Added\n\n- stubbed return of CommitsFormatter`;
       const actual: string = SectionFormatter.format("Added", commits);
 
-      expect(actual).toEqual(expected);
+      expect(actual).toContain(expected);
     });
 
-    test(`returns '### Fixed ${data.formattedCommits.bugfix.standard}'`, () => {
-      Commit.mockImplementation(() => {
-        return {
-          getDetails: () => data.commits.bugfix.standard,
-          getScope: () => false,
-          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
-        };
-      });
-
+    test(`returns '### Fixed\\n\\n- stubbed return of CommitsFormatter'`, () => {
       const commits: Array<Commit> = [new Commit(data.commits.bugfix.standard)];
 
-      const expected: string = `### Added\n\n${
-        data.formattedCommits.bugfix.standard
-      }\n`;
-      const actual: string = SectionFormatter.format("Added", commits);
+      const expected: string = `### Fixed\n\n- stubbed return of CommitsFormatter`;
+      const actual: string = SectionFormatter.format("Fixed", commits);
 
       expect(actual).toEqual(expected);
     });
