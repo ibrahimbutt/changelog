@@ -4,19 +4,11 @@ import Commit from "../../src/commit";
 
 jest.mock("../../src/formatters/changelogFormatter");
 
-jest.mock("../../src/commit");
-Commit.mockImplementation(() => {
+jest.mock("../../src/commit", () => {
   return jest.fn();
 });
 
-const testData = require("../lib/data");
-
 describe("Changelog", () => {
-  beforeEach(() => {
-    ChangelogFormatter.mockClear();
-    Commit.mockClear();
-  });
-
   describe("#content", () => {
     test("returns 'the content'", () => {
       const expected: string = "the content";
