@@ -31,7 +31,7 @@ describe("VersionFormatter", () => {
 
       const actual: string = VersionFormatter.format(commits);
       const expected: string =
-        "## v1.0.0 21 Jun 2019\n\n" +
+        "## v1.0.0 – 21 Jun 2019\n\n" +
         "### Added\n\n" +
         data.formattedCommits.feature.standard +
         "\n" +
@@ -63,7 +63,7 @@ describe("VersionFormatter", () => {
 
       const actual: string = VersionFormatter.format(commits);
       const expected: string =
-        "## v0.1.0 21 Jun 2019\n\n" +
+        "## v0.1.0 – 21 Jun 2019\n\n" +
         "### Fixed\n\n" +
         data.formattedCommits.bugfix.standard +
         "\n" +

@@ -92,10 +92,10 @@ describe("Feature Tests", () => {
     let content = changelog.content();
 
     const expected = {
-      first: `## v1.0.0 21 Jun 2019\n\n### Added\n\n${
+      first: `## v1.0.0 – 21 Jun 2019\n\n### Added\n\n${
         data.formattedCommits.feature.standard
       }\n`,
-      second: `## v0.1.0 21 Jun 2019\n\n### Fixed\n\n${
+      second: `## v0.1.0 – 21 Jun 2019\n\n### Fixed\n\n${
         data.formattedCommits.bugfix.standard
       }\n`
     };
