@@ -24,20 +24,10 @@ export default class CommitLog {
 
   private parseCommits(log: string): Array<Commit> {
     let commits = log.split("\n");
-    commits = this.fixCommits(commits);
     return commits.map(this.createCommit);
   }
 
   private createCommit(commit: string): Commit {
     return new Commit(commit);
-  }
-
-  // HACK
-  private fixCommits(commits: Array<string>) {
-    const arr = [];
-    for (let i = 0; i < commits.length - 1; i += 2) {
-      arr.push(commits[i] + "," + commits[i + 1]);
-    }
-    return arr;
   }
 }
