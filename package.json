@@ -1,7 +1,8 @@
 {
   "name": "changelog",
-  "version": "0.1.0",
-  "main": "build/cli.js",
+  "version": "1.0.0",
+  "description": "Create or update your `CHANGELOG.md` with a single command.",
+  "main": "src/cli.js",
   "repository": "https://github.com/ibrahimbutt/changelog.git",
   "author": "Ibrahim Butt <ibrahimbutt1993@gmail.com>",
   "license": "MIT",
