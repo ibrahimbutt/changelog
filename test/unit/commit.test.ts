@@ -83,6 +83,19 @@ describe("Commit", () => {
     });
   });
 
+  describe("#getTimestamp", () => {
+    describe(`Given '${data.commits.feature.scoped}'`, () => {
+      test(`returns 'Fri, 21 Jun 2019 18:57:10 +0100'`, () => {
+        const expected: string = "Fri, 21 Jun 2019 18:57:10 +0100";
+
+        const commit: Commit = new Commit(data.commits.feature.scoped);
+        const actual = commit.getTimestamp();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+  });
+
   describe(`#isRelease`, () => {
     test(`returns true`, () => {
       const expected: boolean = true;

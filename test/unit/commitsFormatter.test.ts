@@ -15,7 +15,7 @@ describe("Commits", () => {
         return {
           getDetails: () => data.commits.feature.standard,
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -34,7 +34,7 @@ describe("Commits", () => {
         return {
           getDetails: () => "feat: device serial getter",
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -51,7 +51,7 @@ describe("Commits", () => {
         return {
           getDetails: () => "fix: retrieve device name correctly",
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -68,13 +68,13 @@ describe("Commits", () => {
         return {
           getDetails: () => "fix: device serial getter",
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       }).mockImplementationOnce(() => {
         return {
           getDetails: () => "fix: retrieve device name correctly",
           getScope: () => false,
-          getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+          getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
         };
       });
 
@@ -96,7 +96,7 @@ describe("Commits", () => {
           return {
             getDetails: () => "fix(device): device serial getter",
             getScope: () => "device",
-            getDate: () => "Fri, 21 Jun 2019 18:57:10 +0100"
+            getTimestamp: () => "Fri, 21 Jun 2019 18:57:10 +0100"
           };
         });
 

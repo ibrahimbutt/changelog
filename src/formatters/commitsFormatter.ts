@@ -11,15 +11,15 @@ export default class CommitsFormatter {
 
   private static formatCommit(commit: Commit): string {
     const scope: string | false = commit.getScope();
-    const cleanedSubject: string = this.removeTypeAndDate(commit);
+    const cleanedSubject: string = this.removeTypeAndTimestamp(commit);
 
     return `- ${scope ? `**${scope}**: ` : ""}${cleanedSubject}\n`;
   }
 
-  private static removeTypeAndDate(commit: Commit): string {
+  private static removeTypeAndTimestamp(commit: Commit): string {
     return commit
       .getDetails()
       .replace(/^feat\(*\w*\)*:\s|^fix\(*\w*\)*:\s/, "")
-      .replace(" " + commit.getDate(), "");
+      .replace(" " + commit.getTimestamp(), "");
   }
 }

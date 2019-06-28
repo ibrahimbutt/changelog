@@ -25,6 +25,11 @@ export default class Commit {
     return this.details.match(dateMatcherRegex)[2];
   }
 
+  public getTimestamp(): string {
+    const dateMatcherRegex = /(Mon|Tue|Wed|Thu|Fri|Sat|Sun+),\s(\d+\s\w{3}\s\d{4}).+/;
+    return this.details.match(dateMatcherRegex)[0];
+  }
+
   public isRelease(): boolean {
     return this.details.includes("tag: v");
   }
