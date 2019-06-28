@@ -1,21 +1,116 @@
 import Commit from "../../src/commit";
+const data = require("../data");
 
 describe("Commit", () => {
   describe("#getDetails", () => {
-    test("returns 'feat: device serial getter 90010eb'", () => {
-      const expected = "feat: device serial getter 90010eb";
+    test(`returns '${data.commits.bugfix.standard}'`, () => {
+      const expected: string = data.commits.feature.standard;
 
-      const commit = new Commit("feat: device serial getter 90010eb");
-      const actual = commit.getDetails();
+      const commit: Commit = new Commit(data.commits.feature.standard);
+      const actual: string = commit.getDetails();
 
       expect(actual).toEqual(expected);
     });
 
-    test("returns 'feat: device name getter and setter 90010eb'", () => {
-      const expected = "feat: device name getter and setter 90010eb";
+    test(`returns '${data.commits.bugfix.standard}'`, () => {
+      const expected: string = data.commits.bugfix.standard;
 
-      const commit = new Commit("feat: device name getter and setter 90010eb");
-      const actual = commit.getDetails();
+      const commit: Commit = new Commit(data.commits.bugfix.standard);
+      const actual: string = commit.getDetails();
+
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe("#getType", () => {
+    describe(`Given '${data.commits.feature.standard}'`, () => {
+      test(`returns 'feat'`, () => {
+        const expected: string = "feat";
+
+        const commit: Commit = new Commit(data.commits.feature.standard);
+        const actual: string = commit.getType();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+
+    describe(`Given '${data.commits.bugfix.standard}'`, () => {
+      test(`returns 'fix'`, () => {
+        const expected: string = "fix";
+
+        const commit: Commit = new Commit(data.commits.bugfix.standard);
+        const actual: string = commit.getType();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+  });
+
+  describe("#getScope", () => {
+    describe(`Given '${data.commits.feature.scoped}'`, () => {
+      test(`returns 'scoped'`, () => {
+        const expected: string = "scoped";
+
+        const commit: Commit = new Commit(data.commits.feature.scoped);
+        const actual: string = commit.getScope();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+
+    describe(`Given '${data.commits.bugfix.scoped}'`, () => {
+      test(`returns 'scoped'`, () => {
+        const expected: string = "scoped";
+
+        const commit: Commit = new Commit(data.commits.bugfix.scoped);
+        const actual: string = commit.getScope();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+  });
+
+  describe("#getDate", () => {
+    describe(`Given '${data.commits.feature.scoped}'`, () => {
+      test(`returns '21 Jun 2019'`, () => {
+        const expected: string = "21 Jun 2019";
+
+        const commit: Commit = new Commit(data.commits.feature.scoped);
+        const actual = commit.getDate();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+  });
+
+  describe("#getTimestamp", () => {
+    describe(`Given '${data.commits.feature.scoped}'`, () => {
+      test(`returns 'Fri, 21 Jun 2019 18:57:10 +0100'`, () => {
+        const expected: string = "Fri, 21 Jun 2019 18:57:10 +0100";
+
+        const commit: Commit = new Commit(data.commits.feature.scoped);
+        const actual = commit.getTimestamp();
+
+        expect(actual).toEqual(expected);
+      });
+    });
+  });
+
+  describe(`#isRelease`, () => {
+    test(`returns true`, () => {
+      const expected: boolean = true;
+
+      const commit: Commit = new Commit(data.commits.release.one);
+      const actual: boolean = commit.isRelease();
+
+      expect(actual).toEqual(expected);
+    });
+
+    test(`returns false`, () => {
+      const expected: boolean = false;
+
+      const commit: Commit = new Commit(data.commits.feature.scoped);
+      const actual: boolean = commit.isRelease();
 
       expect(actual).toEqual(expected);
     });

@@ -5,7 +5,7 @@ export default class CommitLog {
   private commits: Array<Commit>;
 
   constructor() {
-    const log: String = this.getGitLog();
+    const log: string = this.getGitLog();
     this.commits = this.parseCommits(log);
   }
 
@@ -13,21 +13,31 @@ export default class CommitLog {
     return this.commits;
   }
 
-  private getGitLog(): String {
+  private getGitLog(): string {
     const logBuffer: Buffer = this.execSync();
     return logBuffer.toString();
   }
 
   private execSync(): Buffer {
-    return execSync(`git log --pretty=format:"%s %h %d"`);
+    return execSync(`git log --pretty=format:"%s %d %aD"`);
   }
 
-  private parseCommits(log: String): Array<Commit> {
-    const commits = log.split("\n");
+  private parseCommits(log: string): Array<Commit> {
+    let commits = log.split("\n");
+    commits = this.fixCommits(commits);
     return commits.map(this.createCommit);
   }
 
-  private createCommit(commit: String): Commit {
+  private createCommit(commit: string): Commit {
     return new Commit(commit);
+  }
+
+  // HACK
+  private fixCommits(commits: Array<string>) {
+    const arr = [];
+    for (let i = 0; i < commits.length - 1; i += 2) {
+      arr.push(commits[i] + "," + commits[i + 1]);
+    }
+    return arr;
   }
 }

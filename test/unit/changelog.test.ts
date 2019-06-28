@@ -1,18 +1,37 @@
 import Changelog from "../../src/changelog";
-import ChangelogFormatter from "../../src/changelogFormatter";
+import ChangelogFormatter from "../../src/formatters/changelogFormatter";
+import Commit from "../../src/commit";
 
-const testData = require("../lib/data");
+jest.mock("../../src/formatters/changelogFormatter");
+
+jest.mock("../../src/commit", () => {
+  return jest.fn();
+});
 
 describe("Changelog", () => {
   describe("#content", () => {
-    test("calls ChangelogFormatter with commits", () => {
-      ChangelogFormatter.format = jest.fn();
-      const commits = [{ getDetails: () => testData.commits.first }];
+    test("returns 'the content'", () => {
+      const expected: string = "the content";
 
-      const changelog = new Changelog(commits, ChangelogFormatter);
-      changelog.content();
+      ChangelogFormatter.format = jest.fn(() => expected);
+      const commits: Array<Commit> = [new Commit("")];
 
-      expect(ChangelogFormatter.format).toHaveBeenCalledWith(commits);
+      const changelog: Changelog = new Changelog(commits, ChangelogFormatter);
+      const actual: string = changelog.content();
+
+      expect(actual).toEqual(expected);
+    });
+
+    test("returns 'more content'", () => {
+      const expected: string = "more content";
+
+      ChangelogFormatter.format = jest.fn(() => expected);
+      const commits: Array<Commit> = [new Commit("")];
+
+      const changelog: Changelog = new Changelog(commits, ChangelogFormatter);
+      const actual: string = changelog.content();
+
+      expect(actual).toEqual(expected);
     });
   });
 });

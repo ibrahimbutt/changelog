@@ -1,12 +1,13 @@
 {
   "name": "changelog",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "build/cli.js",
   "repository": "https://github.com/ibrahimbutt/changelog.git",
   "author": "Ibrahim Butt <ibrahimbutt1993@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
+    "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
@@ -27,5 +28,8 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.2"
+  },
+  "bin": {
+    "changelog": "./dist/cli.js"
   }
 }
