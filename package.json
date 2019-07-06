@@ -1,5 +1,5 @@
 {
-  "name": "changelog",
+  "name": "@opensauce/changelog",
   "version": "1.0.1",
   "description": "Create or update your `CHANGELOG.md` with a single command.",
   "main": "src/cli.js",
