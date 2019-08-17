@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "allowJs": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "lib",
+    "declaration": true,
+    "strict": true,
+    "strictNullChecks": false
   },
-  "include": ["src/*"],
-  "exclude": ["test/*", "node_modules"]
+  "include": [
+    "src/*"
+  ],
+  "exclude": [
+    "test/*",
+    "node_modules"
+  ]
 }

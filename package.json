@@ -1,11 +1,16 @@
 {
-  "name": "changelog",
-  "version": "0.1.0",
-  "main": "build/cli.js",
+  "name": "@opensauce/changelog",
+  "version": "1.0.1",
+  "description": "Create or update your `CHANGELOG.md` with a single command.",
+  "main": "lib/cli.js",
+  "types": "lib/cli.d.ts",
   "repository": "https://github.com/ibrahimbutt/changelog.git",
   "author": "Ibrahim Butt <ibrahimbutt1993@gmail.com>",
   "license": "MIT",
   "private": false,
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -30,6 +35,6 @@
     "typescript": "^3.5.2"
   },
   "bin": {
-    "changelog": "./dist/cli.js"
+    "changelog": "./lib/cli.js"
   }
 }
